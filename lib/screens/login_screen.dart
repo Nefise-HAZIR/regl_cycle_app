@@ -77,6 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           password: _passwordController.text);
                       if (res == "success") {
                         var uid = auth.currentUser!.uid;
+                        const CircularProgressIndicator();
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (context) {
                             return HomeScreen(
@@ -84,6 +85,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           }),
                         );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                                    "Please ensure your email and password")));
                       }
                       setState(() {
                         isloading = false;
