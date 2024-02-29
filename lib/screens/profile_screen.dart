@@ -18,7 +18,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  var userData;
+  Map<String, dynamic>?  userData;
   ModelUser? modelUser;
   Uint8List? _image;
 
@@ -33,10 +33,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   getData() async {
     try {
       var userSnap = await firestore.collection("users").doc(widget.uid).get();
-      userData = userSnap.data()!;
+      userData = userSnap.data() ?? {};
       if (userData != null) {
         // && modelUser!.email.isEmpty ?? true
-        modelUser = ModelUser.fromMap(userData);
+        modelUser = ModelUser.fromMap(userData??{});
       }
       getImage();
       setState(() {});
@@ -53,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: userData == null || userData.isEmpty
+      body: userData == null || userData!.isEmpty 
           ? const Center(
               child: CircularProgressIndicator(),
             )

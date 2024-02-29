@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:regl_cycle_app/model/home_view_model.dart';
 import 'package:regl_cycle_app/screens/profile_screen.dart';
-import 'package:regl_cycle_app/widget/body_widget.dart';
+import 'package:regl_cycle_app/widget/body/body_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   final String uid;
